@@ -3,36 +3,52 @@ package calculator;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.util.Date;
+
 
 public class Util {
 
-	/**
-	 * 读取文本文件
-	 */
-	public static String readTxtFile(String filePath) {
+	static String FILENAME="score.dat";
+	public static String SPLITSTRING = "&HHS&";
+	//创建Score
+	public static void createScore() throws IOException {
 
-		String ret = "";
-		try {
-			String encoding = "Unicode";
-			File file = new File(filePath);
-			if (file.isFile() && file.exists()) { // 判断文件是否存在
-				InputStreamReader read = new InputStreamReader(
-						new FileInputStream(file), encoding);// 考虑到编码格式
-				BufferedReader bufferedReader = new BufferedReader(read);
-				String lineTxt = null;
-				while ((lineTxt = bufferedReader.readLine()) != null) {
-					ret = ret + lineTxt;
-				}
-				read.close();
-			} else {
-				System.out.println("找不到指定的文件");
-			}
-		} catch (Exception e) {
-			System.out.println("读取文件内容出错");
-			e.printStackTrace();
-		}
-		return ret;
+		Score score=new Score();
+
+		FileWriter writer = new FileWriter(FILENAME);
+		writer.write(score.getRightAmount() + SPLITSTRING);
+		writer.write(score.getWrongAmount() + SPLITSTRING);
+		writer.write(score.getRadioAmount() + SPLITSTRING);
+		writer.close();
+	}
+	//读取分数
+	public static Score readScore() throws IOException, ParseException {
+
+		Score score=new Score();
+		BufferedReader reader = new BufferedReader(new FileReader(FILENAME));
+		String line = reader.readLine();
+		String []infos=line.split(SPLITSTRING);
+		score.setRightAmount(Integer.valueOf(infos[0]));
+		score.setWrongAmount(Integer.valueOf(infos[1]));
+		score.setRadioAmount(Double.valueOf(infos[2]));
+
+		return score;
+
+	}
+	//写分数
+	public static void saveScore(Score score) throws IOException, ParseException {
+		
+		FileWriter writer = new FileWriter(FILENAME);
+		writer.write(score.getRightAmount() + SPLITSTRING);
+		writer.write(score.getWrongAmount() + SPLITSTRING);
+		writer.write(score.getRadioAmount() + SPLITSTRING);
+		
+		writer.close();
 	}
 
 	/**
