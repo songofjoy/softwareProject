@@ -14,6 +14,8 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class Frame extends JFrame {
 
@@ -28,8 +30,41 @@ public class Frame extends JFrame {
 	JLabel label_2 = new JLabel("0");
 	JLabel label_3 = new JLabel("0.0%");
 	
+	static JLabel lblNewLabel = new JLabel("正确题目");
+	static JLabel label = new JLabel("错误题目");
+	static JLabel label_1 = new JLabel("正确率");
+	static JButton button_20 = new JButton("重置");
+	static JButton button_19 = new JButton("清除");
+	static JButton button_18 = new JButton("退格");
+	static JButton button_23 = new JButton("简");
+	static JButton button_21 = new JButton("繁");
+	static JButton button_22 = new JButton("英");
+	
+	static final String EN="resource_english";
+	static final String CH="resource_zh_CN_1";
+	static final String HARD="resource_hard";
+	
 	static Score curScore=new Score();
 	DecimalFormat df= new DecimalFormat("######0.0");   
+	
+	/**
+	 * 字体中英繁切换
+	 * @param resource
+	 */
+	public static void changeCharacter(String resource){
+		
+		ResourceBundle rb = ResourceBundle.getBundle(resource);
+		lblNewLabel.setText(rb.getString("rightAmount"));	
+		label.setText(rb.getString("wrongAmount"));	
+		label_1.setText(rb.getString("radioAmount"));	
+		button_20.setText(rb.getString("reset"));	
+		button_19.setText(rb.getString("clear"));	
+		button_18.setText(rb.getString("back"));	
+		button_23.setText(rb.getString("simply"));	
+		button_21.setText(rb.getString("hard"));	
+		button_22.setText(rb.getString("english"));
+
+	}
 	/**
 	 * Launch the application.
 	 * @throws IOException 
@@ -38,6 +73,7 @@ public class Frame extends JFrame {
 	public static void main(String[] args) throws Exception{
 		
 		curScore=Util.readScore();
+		changeCharacter(CH);
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -55,7 +91,7 @@ public class Frame extends JFrame {
 	 */
 	public Frame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 540, 411);
+		setBounds(100, 100, 540, 431);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -281,15 +317,12 @@ public class Frame extends JFrame {
 		button_17.setBounds(422, 293, 76, 48);
 		contentPane.add(button_17);
 		
-		JLabel lblNewLabel = new JLabel("正确题目");
 		lblNewLabel.setBounds(28, 293, 52, 15);
 		contentPane.add(lblNewLabel);
 		
-		JLabel label = new JLabel("错误题目");
 		label.setBounds(28, 318, 52, 15);
 		contentPane.add(label);
 		
-		JLabel label_1 = new JLabel("正确率");
 		label_1.setBounds(28, 343, 52, 15);
 		contentPane.add(label_1);
 		
@@ -305,7 +338,6 @@ public class Frame extends JFrame {
 		label_3.setText(String.valueOf(df.format(curScore.getRadioAmount()*100))+"%");
 		contentPane.add(label_3);
 		
-		JButton button_18 = new JButton("退格");
 		button_18.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int length=textField.getText().length();
@@ -317,7 +349,6 @@ public class Frame extends JFrame {
 		button_18.setBounds(322, 293, 76, 48);
 		contentPane.add(button_18);
 		
-		JButton button_19 = new JButton("清除");
 		button_19.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textField.setText("");
@@ -326,7 +357,6 @@ public class Frame extends JFrame {
 		button_19.setBounds(224, 293, 76, 48);
 		contentPane.add(button_19);
 		
-		JButton button_20 = new JButton("重置");
 		button_20.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				curScore=new Score();
@@ -343,6 +373,30 @@ public class Frame extends JFrame {
 		});
 		button_20.setBounds(127, 293, 76, 48);
 		contentPane.add(button_20);
+		button_22.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				changeCharacter(EN);
+			}
+		});
+		
+		button_22.setBounds(446, 351, 52, 31);
+		contentPane.add(button_22);
+		button_21.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				changeCharacter(HARD);
+			}
+		});
+		
+		button_21.setBounds(384, 351, 52, 31);
+		contentPane.add(button_21);
+		button_23.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				changeCharacter(CH);
+			}
+		});
+		
+		button_23.setBounds(318, 351, 52, 31);
+		contentPane.add(button_23);
 	}
 	
 }
