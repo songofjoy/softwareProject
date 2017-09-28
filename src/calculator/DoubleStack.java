@@ -118,7 +118,9 @@ public class DoubleStack {
     			strings.add(""+curchar);curString="";
     		}
     	}
+    	if(strings.get(0).equals("+")||strings.get(0).equals("-")){strings.add(0, "0");}
     	if(!curString.equals("")) {strings.add(curString);}
+    	
     	return strings;
     }
     
