@@ -33,6 +33,7 @@ public class Frame extends JFrame {
 	static JLabel lblNewLabel = new JLabel("正确题目");
 	static JLabel label = new JLabel("错误题目");
 	static JLabel label_1 = new JLabel("正确率");
+	JLabel label_4 = new JLabel("0:000");
 	static JButton button_20 = new JButton("重置");
 	static JButton button_19 = new JButton("清除");
 	static JButton button_18 = new JButton("退格");
@@ -43,6 +44,8 @@ public class Frame extends JFrame {
 	static final String EN="resource_english";
 	static final String CH="resource_zh_CN_1";
 	static final String HARD="resource_hard";
+	static int timer=0;
+	static long starttimer=0;
 	
 	static Score curScore=new Score();
 	DecimalFormat df= new DecimalFormat("######0.0");   
@@ -264,6 +267,7 @@ public class Frame extends JFrame {
 		button_16.setBounds(446, 220, 52, 48);
 		contentPane.add(button_16);
 		
+	
 		JButton button_17 = new JButton("=");
 		button_17.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -397,6 +401,36 @@ public class Frame extends JFrame {
 		
 		button_23.setBounds(318, 351, 52, 31);
 		contentPane.add(button_23);
+		
+		JButton button_24 = new JButton("计");
+		button_24.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				timer++;
+				if(timer%3==1){
+					new Thread(new Runnable() {
+						@Override
+						public void run() {
+							starttimer=System.currentTimeMillis();
+							while(timer%3==1){
+								label_4.setText(""+(System.currentTimeMillis()-starttimer)/1000+":"+(System.currentTimeMillis()-starttimer)%1000);
+							}
+						}
+					}).start();
+				}
+				else if(timer%3==2){
+					//Stop
+				}
+				else if(timer%3==0){
+					label_4.setText("0:000");
+				}
+			}
+		});
+		button_24.setBounds(248, 351, 52, 31);
+		contentPane.add(button_24);
+		
+
+		label_4.setBounds(199, 359, 62, 15);
+		contentPane.add(label_4);
 	}
 	
 }
