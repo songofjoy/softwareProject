@@ -55,6 +55,10 @@ public class ComputeController {
 		int gcd=gcd(fac[0],fac[1]);
 		fac[0]/=gcd;
 		fac[1]/=gcd;
+		if(fac[1]<0){
+			fac[1]*=-1;
+			fac[0]*=-1;
+		}
 		return fac[0]+"/"+fac[1];
 	}
 	/**
