@@ -10,6 +10,7 @@ import java.util.Stack;
  */
 public class DoubleStack {  
 
+	static String ERRORINFO="The Function Is Wrong!";
 	private ArrayList<String> testString=new ArrayList<>(); 
     private Stack<String> stack = null;  
     private ArrayList<String> createStrings=new ArrayList<>(); 
@@ -29,7 +30,6 @@ public class DoubleStack {
      */
     public String compute(){
     	
-    	String ERRORINFO="The Function Is Wrong!";
     	try{
         	if(createStrings==null||createStrings.size()==0){
         		return ERRORINFO;
@@ -118,9 +118,7 @@ public class DoubleStack {
     			strings.add(""+curchar);curString="";
     		}
     	}
-    	if(strings.get(0).equals("+")||strings.get(0).equals("-")){strings.add(0, "0");}
     	if(!curString.equals("")) {strings.add(curString);}
-    	
     	return strings;
     }
     
