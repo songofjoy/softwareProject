@@ -29,6 +29,8 @@ public class Util {
 	//读取分数
 	public static Score readScore() throws IOException, ParseException {
 
+		File file = new File(FILENAME);
+        if(!file.exists()){createScore();}   
 		Score score=new Score();
 		BufferedReader reader = new BufferedReader(new FileReader(FILENAME));
 		String line = reader.readLine();
