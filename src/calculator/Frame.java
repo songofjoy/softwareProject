@@ -42,7 +42,6 @@ public class Frame extends JFrame {
 	static JButton button_21 = new JButton("繁");
 	static JButton button_22 = new JButton("英");
 	static JButton button_24 = new JButton("计时");
-	static JButton button_17 = new JButton("确定");
 	static JButton button_9 = new JButton("下一题");
 
 	
@@ -72,7 +71,6 @@ public class Frame extends JFrame {
 		button_21.setText(rb.getString("hard"));	
 		button_22.setText(rb.getString("english"));
 		button_24.setText(rb.getString("timer"));
-		button_17.setText(rb.getString("ensure"));
 		button_9.setText(rb.getString("next"));
 		
 	}
@@ -224,7 +222,7 @@ public class Frame extends JFrame {
 			   	testStack.analysisString();  
 				String right=testStack.compute();
 				if(strings.length>1&&strings[1].equals(right)){
-					textField1.setText("Right!");
+					textField1.setText("正确!");
 					curScore.setRightAmount(curScore.getRightAmount()+1);
 					System.out.println(curScore.getRightAmount());
 					System.out.println(curScore.getWrongAmount());
@@ -242,7 +240,7 @@ public class Frame extends JFrame {
 					}
 				}
 				else{
-					textField1.setText("Wrong!");
+					textField1.setText("错误!");
 					curScore.setWrongAmount(curScore.getWrongAmount()+1);
 					curScore.setRadioAmount((double)curScore.getRightAmount()/(double)(curScore.getRightAmount()+curScore.getWrongAmount()));
 					lblNewLabel_1.setText(String.valueOf(curScore.getRightAmount()));
@@ -261,115 +259,6 @@ public class Frame extends JFrame {
 		});
 		button_9.setBounds(270, 230, 76, 48);
 		contentPane.add(button_9);
-		
-		/*JButton button_10 = new JButton("(");
-		button_10.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				textField.setText(textField.getText()+"(");
-			}
-		});
-		button_10.setBounds(283, 145, 52, 48);
-		contentPane.add(button_10);
-		
-		JButton button_11 = new JButton("×");
-		button_11.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				textField.setText(textField.getText()+"×");
-			}
-		});
-		button_11.setBounds(370, 145, 52, 48);
-		contentPane.add(button_11);
-		
-		JButton button_12 = new JButton(")");
-		button_12.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				textField.setText(textField.getText()+")");
-			}
-		});
-		button_12.setBounds(283, 220, 52, 48);
-		contentPane.add(button_12);
-		
-		
-		
-		JButton button_14 = new JButton("-");
-		button_14.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				textField.setText(textField.getText()+"-");
-			}
-		});
-		button_14.setBounds(446, 68, 52, 48);
-		contentPane.add(button_14);
-		
-		JButton button_15 = new JButton("÷");
-		button_15.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				textField.setText(textField.getText()+"÷");
-			}
-		});
-		button_15.setBounds(446, 145, 52, 48);
-		contentPane.add(button_15);
-		
-		JButton button_16 = new JButton("'='");
-		button_16.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				textField.setText(textField.getText()+"=");
-			}
-		});
-		button_16.setBounds(446, 220, 52, 48);
-		contentPane.add(button_16);*/
-		
-	
-		
-		/*button_17.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(textField.getText().contains("=")){
-					String[] strings=textField.getText().split("=");
-				  	DoubleStack testStack = new DoubleStack(strings[0]);  
-				   	testStack.analysisString();  
-					String right=testStack.compute();
-					if(strings[1].equals(right)){
-						textField1.setText("Right!");
-						curScore.setRightAmount(curScore.getRightAmount()+1);
-						System.out.println(curScore.getRightAmount());
-						System.out.println(curScore.getWrongAmount());
-						curScore.setRadioAmount((double)curScore.getRightAmount()/(double)(curScore.getRightAmount()+curScore.getWrongAmount()));
-						System.out.println(curScore.getRadioAmount());
-						lblNewLabel_1.setText(String.valueOf(curScore.getRightAmount()));
-						label_2.setText(String.valueOf(curScore.getWrongAmount()));
-						label_3.setText(String.valueOf(df.format(curScore.getRadioAmount()*100))+"%");
-
-						try {
-							Util.saveScore(curScore);
-						} catch (IOException | ParseException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-					}
-					else{
-						textField1.setText("Wrong!");
-						curScore.setWrongAmount(curScore.getWrongAmount()+1);
-						curScore.setRadioAmount((double)curScore.getRightAmount()/(double)(curScore.getRightAmount()+curScore.getWrongAmount()));
-						lblNewLabel_1.setText(String.valueOf(curScore.getRightAmount()));
-						label_2.setText(String.valueOf(curScore.getWrongAmount()));
-						label_3.setText(String.valueOf(df.format(curScore.getRadioAmount()*100))+"%");
-
-						try {
-							Util.saveScore(curScore);
-						} catch (IOException | ParseException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-					}
-				}else{
-				   	DoubleStack testStack = new DoubleStack(textField.getText());  
-				   	testStack.analysisString();  
-			    	textField.setText(testStack.compute());
-				}
-			
-			}
-		});
-		button_17.setBounds(195, 295, 52, 48);
-		contentPane.add(button_17);*/
 		
 		lblNewLabel.setBounds(270, 293, 52, 15);
 		contentPane.add(lblNewLabel);
