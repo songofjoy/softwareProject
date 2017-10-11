@@ -1,4 +1,4 @@
-package test;
+package calculator;
 
 import static org.junit.Assert.*;
 import junit.framework.Assert;

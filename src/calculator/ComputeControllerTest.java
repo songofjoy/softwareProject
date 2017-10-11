@@ -1,4 +1,4 @@
-package test;
+package calculator;
 
 import org.junit.Assert;
 import org.junit.Test;

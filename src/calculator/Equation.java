@@ -71,7 +71,7 @@ public class Equation {
 			String temps=s.substring(0,s.length()-1);
 			DoubleStack testStack = new DoubleStack(temps);  
 	    	testStack.analysisString();  
-	    	
+	    	 
 	    	//检验生成式，如果不合法重新生成
 	    	if(!testStack.compute().toString().equals(DoubleStack.ERRORINFO)){
 				break;
