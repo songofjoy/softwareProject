@@ -240,7 +240,7 @@ public class Frame extends JFrame {
 					}
 				}
 				else{
-					textField1.setText("错误!");
+					textField1.setText("错误!正确答案为:"+textField.getText()+right);
 					curScore.setWrongAmount(curScore.getWrongAmount()+1);
 					curScore.setRadioAmount((double)curScore.getRightAmount()/(double)(curScore.getRightAmount()+curScore.getWrongAmount()));
 					lblNewLabel_1.setText(String.valueOf(curScore.getRightAmount()));
